@@ -6,6 +6,7 @@ import SingleBook from "./SingleBook";
 function AllTheBooks(props){
 
   const [ search, setSearch ] = useState('')
+  const [selected, setSelected] = useState(false)
 
     return (
       <>
@@ -21,7 +22,11 @@ function AllTheBooks(props){
         <Row>
           {props.books
           .filter(book => book.title.toLowerCase().includes(search))
-          .map(book =>  <SingleBook key= {book.asin} book={book} />)}
+          .map(book =>  <SingleBook 
+            key= {book.asin} 
+            book={book} 
+            selected={selected === book.asin}
+            onSelect={() => setSelected(selected === book.asin ? null : book.asin)}/>)}
         </Row>
 
       </>

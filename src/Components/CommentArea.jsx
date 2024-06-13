@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 
-const token = ""
 
 const seeComments = "https://striveschool-api.herokuapp.com/api/books/";
-const sendComments = "https://striveschool-api.herokuapp.com/api/comments/:elementId";
+
 
 function CommentArea( { asin }) {
     const [ comments, setComments ] = useState([])
@@ -22,15 +21,6 @@ function CommentArea( { asin }) {
         .then((data) => setComments(data))
         .catch((error) =>  console.log ("errore:", error))
     }, [asin])
-
-
-    useEffect(() => {
-        fetch(sendComments,
-            {
-                method:"POST",
-                headers: { Authorization: ""}
-            })
-    })
 
 
 

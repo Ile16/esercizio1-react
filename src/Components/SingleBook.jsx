@@ -1,17 +1,17 @@
-import { useState } from "react";
+
 import { Col, Card } from "react-bootstrap";
 import CommentArea from "./CommentArea";
 
 
-function SingleBook({book}){
-    const [selected, setSelected] = useState(false)
+function SingleBook({book, selected, onSelect}){
+    
 
     return(
         <Col> 
             <Card className="my-4" 
-            id="cards" 
-            style={{width:'300px', minHeight:'700px', border: selected ? '2px solid red' : 'none'}}
-            onClick={() => setSelected(!selected)}>
+                id="cards" 
+                style={{width:'300px', minHeight:'700px', border: selected ? '2px solid red' : 'none'}}
+                onClick={onSelect}>
                 <Card.Img variant="top" src={book.img} className="container-fluid" style={{minHeight: '400px'}}/>
                 <Card.Body>
                     <Card.Title style={{fontSize: '16px'}}>{book.title}</Card.Title>
