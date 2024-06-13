@@ -1,26 +1,31 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Form } from "react-bootstrap";
+import SingleBook from "./SingleBook";
 
 
 function AllTheBooks(props){
+
+  const [ search, setSearch ] = useState('')
+
     return (
-        <>
-            <Row>
-                {props.books.map(book => (
-                    <Col> 
-                        <Card className="my-4" id="cards" style={{width:'300px', height:'565px'}}>
-                            <Card.Img variant="top" src={book.img} className="container-fluid"/>
-                            <Card.Body>
-                                <Card.Title style={{fontSize: '16px'}}>{book.title}</Card.Title>
-                                <Card.Text className="my-4" style={{fontWeight:'600'}}>Prezzo: {book.price}</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-            
-        </>
+      <>
+        <Form.Label className="m-3">
+          <Form.Control
+            type="search"
+            placeholder="Search your book..."
+            value={search} //prende ciò che scriviamo
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Form.Label>
+
+        <Row>
+          {props.books
+          .filter(book => book.title.toLowerCase().includes(search))
+          .map(book =>  <SingleBook key= {book.asin} book={book} />)}
+        </Row>
+
+      </>
+
     );
 }
 

@@ -4,7 +4,7 @@ import { Alert } from "react-bootstrap";
 function Welcome(){
     return(
         <>
-            <Alert variant="warning" >
+            <Alert variant="primary" >
                 <h3>CHOOSE YOUR BOOK</h3>
             </Alert>
         </>
