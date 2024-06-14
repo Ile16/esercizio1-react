@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 const sendComments = "https://striveschool-api.herokuapp.com/api/comments/:elementId";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY5YjMyMjg1M2E0ZDAwMTU0ODYyMTEiLCJpYXQiOjE3MTgzMTY0MDEsImV4cCI6MTcxOTUyNjAwMX0.IWGsHnMbKfaQ6jTyc3BAwLgsNDV09_k68nCArX3Gs3I"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY5YjMyMjg1M2E0ZDAwMTU0ODYyMTEiLCJpYXQiOjE3MTgzNzg2MzEsImV4cCI6MTcxOTU4ODIzMX0.Dxruo7AXRKlX8GqXom0fd51npOt1t97xymC_MSe0sQc"
 
 function AddComment( {elementId, setAdd, add} ) {
 

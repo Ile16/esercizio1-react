@@ -1,7 +1,9 @@
 import React from "react";
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import SearchBook from "./SearchBook";
 
-function MyNav(){
+function MyNav({search, handleSearch}){
+    
     return(
         <>
         <Navbar bg="primary" data-bs-theme="dark">
@@ -12,6 +14,7 @@ function MyNav(){
                     <Nav.Link href="#">About</Nav.Link>
                     <Nav.Link href="#">Browse</Nav.Link>
                 </Nav>
+                <SearchBook search={search} handleSearch={handleSearch} />
             </Container>
         </Navbar>
         </>

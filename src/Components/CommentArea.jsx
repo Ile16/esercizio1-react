@@ -15,7 +15,7 @@ function CommentArea( { asin }) {
     useEffect(() => {
         fetch(seeComments+asin+"/comments/",
         {
-            headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY5YjMyMjg1M2E0ZDAwMTU0ODYyMTEiLCJpYXQiOjE3MTgyNjkyNzMsImV4cCI6MTcxOTQ3ODg3M30.OZwcgdec9rVNJsTYEsaiWPtKC1OWHyoikrbc1oBAIZQ"}
+            headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY5YjMyMjg1M2E0ZDAwMTU0ODYyMTEiLCJpYXQiOjE3MTgzNzg2MzEsImV4cCI6MTcxOTU4ODIzMX0.Dxruo7AXRKlX8GqXom0fd51npOt1t97xymC_MSe0sQc"}
         })
         .then((response) => response.json())
         .then((data) => setComments(data))
