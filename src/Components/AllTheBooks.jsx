@@ -14,8 +14,10 @@ function AllTheBooks(props){
         <Row>
           {props.books
           .filter(book => book.title.toLowerCase().includes(props.searchQuery))
+          //iterazione dei libri 
           .map(book =>  <SingleBook 
             key= {book.asin} 
+            data-testid="cards"
             book={book} 
             selected={selected === book.asin}
             onSelect={() => setSelected(selected === book.asin ? null : book.asin)}/>)}

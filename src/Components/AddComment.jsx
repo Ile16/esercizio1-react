@@ -46,7 +46,7 @@ function AddComment( {elementId, setAdd, add} ) {
 
     return(
         <>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" placheholder="Leave a comment" >
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
             <Form.Control 
                 as="textarea" 
                 rows={3} 

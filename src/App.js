@@ -35,7 +35,7 @@ function App() {
         {type === 'romance' && <AllTheBooks books={romance} searchQuery={search}/>}
         {type === 'scifi' && <AllTheBooks books={scifi} searchQuery={search} />}
           
-          <AllTheBooks books={history} searchQuery={search}/>
+          <AllTheBooks books={history} searchQuery={search} />
       </Container>
       <MyFooter />
     </>
