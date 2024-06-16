@@ -4,10 +4,12 @@ import SingleBook from "./SingleBook";
 
 
 function AllTheBooks(props){
-  
+  // console.log(props)
 
   // const [ search, setSearch ] = useState('')
   const [selected, setSelected] = useState(false)
+
+  // console.log("books:", props.books)
 
     return (
       <>

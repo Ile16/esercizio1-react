@@ -4,7 +4,7 @@ import { ListGroup } from "react-bootstrap";
 function SingleComment( {comment}){
     return(
         <>
-            <ListGroup>
+            <ListGroup data-testid="commenti">
                 {comment.comment}
         
             </ListGroup>

@@ -14,7 +14,7 @@ function MyNav({search, handleSearch}){
                     <Nav.Link href="#">About</Nav.Link>
                     <Nav.Link href="#">Browse</Nav.Link>
                 </Nav>
-                <SearchBook search={search} handleSearch={handleSearch} />
+                <SearchBook data-testid="cards" search={search} handleSearch={handleSearch} />
             </Container>
         </Navbar>
         </>

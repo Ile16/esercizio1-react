@@ -1,10 +1,12 @@
 
 import { Col, Card } from "react-bootstrap";
 import CommentArea from "./CommentArea";
+import CommentList from "./CommentList";
 
 
 function SingleBook({book, selected, onSelect}){
-    
+    // console.log(book)
+    // console.log(selected)
 
     return(
         <Col> 

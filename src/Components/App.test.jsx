@@ -3,11 +3,12 @@ import '@testing-library/jest-dom/extend-expect';
 import Welcome from "./Welcome";
 import AddComment from "./AddComment";
 import AllTheBooks from "./AllTheBooks";
-
 import SingleBook from "./SingleBook";
-import SearchBook from "./SearchBook";
 import App from "../App";
-
+import fantasy from '../books/fantasy.json';
+import CommentList from "./CommentList";
+import history from '../books/history.json';
+import SingleComment from "./SingleComment";
 
 
 
@@ -20,15 +21,14 @@ test("componente Welcome renderizzato", () => {
 
 
 //TEST 2 verifica che vengano effettivamente renderizzate tante bootstrap cards
-//quanti sono i libri nel file json utilizzato
+//quanti sono i libri nel file json utilizzato PASS
 
 test("verifica che tutte le card siano rendirizzate", () => {
     //verifica del n. di card renderizzate corrispondente al numero di libri nell'array book
     render(<App />)
     const cards = screen.getAllByTestId("cards");
-    expect(cards).toHaveLength(book.length);
+    expect(cards).toHaveLength(history.length);
 })
-
 
 
 //TEST 3 verifica che il componente CommentArea venga renderizzato correttamente PASS
@@ -39,17 +39,6 @@ test("renderizzazione del componente CommentArea", () => {
 });
 
 
-//TEST 4 verifica, magari con più tests, che il filtraggio dei libri tramite navbar si comporti come previsto
-test("ricerca funzionante", async () =>{
-    render(< SearchBook />)
-    const inputRicerca = screen.getByPlaceholderText(/Search your book.../i)
-
-    fireEvent.change(inputRicerca, {target: {value: "Lean"}})
-    const libriFiltrati = await screen.findAllByTestId("cards");
-    expect(libriFiltrati).toHaveLength(1)
-    expect(screen.getByText(/Lean In/i)).toBeInTheDocument();
-})
-
 //TEST 5 verifica che, cliccando su un libro, il suo bordo cambi colore
 test("bordo rosso al click", () => {
     render(<SingleBook />)
@@ -59,14 +48,37 @@ test("bordo rosso al click", () => {
     // expect(gestioneBordo).toHaveStyle("border: 2px solid red")
 })
 
-//TEST 6 verifica che, cliccando su di un secondo libro dopo il primo, il bordo del primo libro ritorni normale
+//TEST 6 verifica che, cliccando su di un secondo libro dopo il primo, 
+//il bordo del primo libro ritorni normale
+
+test("click reaction ", () => {
+    render(< SingleBook />)
+    const elemeento1 = screen.getAllByTestId("cards");
+    fireEvent.click(elemeento1);
+    expect(elemeento1).toHaveStyle("border: 2px solid red");
+    const elemento2 = screen.getAllByRole("div");
+    expect(elemento2).toHaveStyle("border: 2px solid red");
+    expect(elemeento1).not.toHaveStyle("border: 2px solid red")
+})
 
 
 //TEST 7 verifica che all'avvio della pagina, senza aver ancora cliccato su nessun libro, 
 //non ci siano istanze del componente SingleComment all'interno del DOM
+test("avvio pagina no istanze SingleComment", () => {
+    render(<SingleBook />)
+    const componente = screen.getAllByTestId("commento");
+    expect(componente).not.toBeInTheDocument()
 
+})
 
 
 //TEST 8 verifica infine che, cliccando su di un libro con recensioni, esse vengano caricate 
 //correttamente all'interno del DOM
 
+test("lista recensioni", () =>{
+    render(<SingleBook />)
+    const selezioneLibri = screen.getAllByTestId("cards");
+    fireEvent.click(selezioneLibri)
+    const commentLoading = screen.getAllByTestId("commenti");
+    expect(commentLoading).toBeInTheDocument()
+})

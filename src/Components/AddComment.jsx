@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const sendComments = "https://striveschool-api.herokuapp.com/api/comments/:elementId";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY5YjMyMjg1M2E0ZDAwMTU0ODYyMTEiLCJpYXQiOjE3MTgzNzg2MzEsImV4cCI6MTcxOTU4ODIzMX0.Dxruo7AXRKlX8GqXom0fd51npOt1t97xymC_MSe0sQc"
+const sendComments = "https://striveschool-api.herokuapp.com/api/comments/";
+
 
 function AddComment( {elementId, setAdd, add} ) {
 
@@ -35,18 +35,19 @@ function AddComment( {elementId, setAdd, add} ) {
                 body: JSON.stringify(comments),
                 headers: { 
                     'Content-type': 'application/json',
-                    Authorization: `Bearer ${token}`}
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjZlZmUzOTlkOTU1NzAwMTVjY2MwYTUiLCJpYXQiOjE3MTg1NTAwNzMsImV4cCI6MTcxOTc1OTY3M30.QKZ7M_lFliPGGHbMgPhMdWsdqtr63FBeA_vTqWLDULs"}
             })
             .then((response) => response.json())
             .then((data) => {
                 setAdd(!add) 
-                setComments({ comment: '', rate: 0, elementId: elementId })}) //resettare ai valori predefiniti una volta aggiunto
-            .catch((error) => console.error("errore:", error))
+                setComments({ comment: '', rate: 0, elementId: elementId },
+                console.log(data))})//resettare ai valori predefiniti una volta aggiunto
+            .catch((error) => console.error(error))
     }
 
     return(
         <>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+        <Form.Group className="mb-3" >
             <Form.Control 
                 as="textarea" 
                 rows={3} 
