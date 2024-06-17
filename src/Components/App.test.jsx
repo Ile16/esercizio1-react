@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, cleanup } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 import Welcome from "./Welcome";
 import AddComment from "./AddComment";
@@ -19,6 +19,7 @@ test("componente Welcome renderizzato", () => {
     expect(componenteWelcomeMontato).toBeInTheDocument();
 })
 
+afterEach(cleanup);
 
 //TEST 2 verifica che vengano effettivamente renderizzate tante bootstrap cards
 //quanti sono i libri nel file json utilizzato PASS
@@ -29,47 +30,56 @@ test("verifica che tutte le card siano rendirizzate", () => {
     const cards = screen.getAllByTestId("cards");
     expect(cards).toHaveLength(history.length);
 })
+afterEach(cleanup);
 
 
 //TEST 3 verifica che il componente CommentArea venga renderizzato correttamente PASS
+
 test("renderizzazione del componente CommentArea", () => {
     render(<AddComment />)
     const commentiLibri = screen.getByPlaceholderText(/Add your comment.../i)
     expect(commentiLibri).toBeInTheDocument()
 });
 
+afterEach(cleanup);
 
 //TEST 5 verifica che, cliccando su un libro, il suo bordo cambi colore
+
 test("bordo rosso al click", () => {
     render(<SingleBook />)
     const gestioneBordo = screen.getByTestId("cards");
     fireEvent.click(gestioneBordo);
     expect(gestioneBordo).toHaveStyle("border: 2px solid red")
     // expect(gestioneBordo).toHaveStyle("border: 2px solid red")
-})
+});
+
+afterEach(cleanup);
 
 //TEST 6 verifica che, cliccando su di un secondo libro dopo il primo, 
 //il bordo del primo libro ritorni normale
 
 test("click reaction ", () => {
     render(< SingleBook />)
-    const elemeento1 = screen.getAllByTestId("cards");
-    fireEvent.click(elemeento1);
-    expect(elemeento1).toHaveStyle("border: 2px solid red");
-    const elemento2 = screen.getAllByRole("div");
+    const elemento1 = screen.getByTestId("cards");
+    fireEvent.click(elemento1);
+    expect(elemento1).toHaveStyle("border: 2px solid red");
+    const elemento2 = screen.getByTestId("cards");
     expect(elemento2).toHaveStyle("border: 2px solid red");
-    expect(elemeento1).not.toHaveStyle("border: 2px solid red")
+    expect(elemento1).not.toHaveStyle("border: 2px solid red")
 })
+
+afterEach(cleanup);
 
 
 //TEST 7 verifica che all'avvio della pagina, senza aver ancora cliccato su nessun libro, 
 //non ci siano istanze del componente SingleComment all'interno del DOM
-test("avvio pagina no istanze SingleComment", () => {
-    render(<SingleBook />)
-    const componente = screen.getAllByTestId("commento");
-    expect(componente).not.toBeInTheDocument()
 
+test("avvio pagina no istanze SingleComment", () => {
+    render(<SingleComment />)
+    const componente = screen.getByTestId("commenti");
+    expect(componente).not.toBeInTheDocument()
 })
+afterEach(cleanup);
 
 
 //TEST 8 verifica infine che, cliccando su di un libro con recensioni, esse vengano caricate 
@@ -77,8 +87,10 @@ test("avvio pagina no istanze SingleComment", () => {
 
 test("lista recensioni", () =>{
     render(<SingleBook />)
-    const selezioneLibri = screen.getAllByTestId("cards");
+    const selezioneLibri = screen.getByTestId("cards");
     fireEvent.click(selezioneLibri)
-    const commentLoading = screen.getAllByTestId("commenti");
+    const commentLoading = screen.getAllByTestId("comment");
     expect(commentLoading).toBeInTheDocument()
 })
+
+afterEach(cleanup);

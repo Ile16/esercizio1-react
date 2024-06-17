@@ -4,7 +4,7 @@ function SearchBook( {search, handleSearch }){
 
     return(
         <>
-            <Form.Label className="m-3" >
+            <Form.Label className="m-3" data-testid="carte">
                 <Form.Control
                     type="search"
                     placeholder="Search your book..."
