@@ -12,7 +12,7 @@ import SingleComment from "./SingleComment";
 
 
 
-//TEST 1 verifica che il componente "welcome" venga montato correttamente PASS
+//TEST 1 verifica che il componente "welcome" venga montato correttamente 
 test("componente Welcome renderizzato", () => {
     render(<Welcome />)
     const componenteWelcomeMontato = screen.getByText(/CHOOSE YOUR BOOK/i);
@@ -22,7 +22,7 @@ test("componente Welcome renderizzato", () => {
 afterEach(cleanup);
 
 //TEST 2 verifica che vengano effettivamente renderizzate tante bootstrap cards
-//quanti sono i libri nel file json utilizzato PASS
+//quanti sono i libri nel file json utilizzato 
 
 test("verifica che tutte le card siano rendirizzate", () => {
     //verifica del n. di card renderizzate corrispondente al numero di libri nell'array book
@@ -33,7 +33,7 @@ test("verifica che tutte le card siano rendirizzate", () => {
 afterEach(cleanup);
 
 
-//TEST 3 verifica che il componente CommentArea venga renderizzato correttamente PASS
+//TEST 3 verifica che il componente CommentArea venga renderizzato correttamente 
 
 test("renderizzazione del componente CommentArea", () => {
     render(<AddComment />)

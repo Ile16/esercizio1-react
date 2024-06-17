@@ -5,7 +5,7 @@ import SearchBook from "./SearchBook";
 
 
 //TEST 4 verifica, magari con più tests, che il filtraggio dei libri 
-//tramite navbar si comporti come previsto PASS
+//tramite navbar si comporti come previsto 
 
 test("ricerca funzionante",  () =>{
     render(< SearchBook />)
